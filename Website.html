@@ -4,6 +4,15 @@
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Browser Rechner</title>
+
+        <script >
+            // Funktion welche den Wert aus dem Eingabefeld dem Anzeigefenster übergibt
+            function berechnen() {
+                var lösung = document.getElementById("berechnungsfenster").value; 
+                document.getElementById("anzeigefenster").value = lösung;
+            }
+        </script>
+
     </head>
 
     <body>
@@ -11,7 +20,7 @@
         <!-- title-->
         <h1> Browser Rechner</h1>
 
-        <!-- Eingabefeld-->
+        <!-- Eingabefeld/berechnungsfenster-->
         <input id="berechnungsfenster" type="text" >
 
         <!-- Berechnungsknopf-->
@@ -27,5 +36,5 @@
         </div>
 
     </body>
-
+    
 </html>
