@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Browser Rechner</title>
+        <script type="text/javascript">
 
-        <script >
-            // Funktion welche den Wert aus dem Eingabefeld dem Anzeigefenster übergibt
-            function berechnen() {
-                var lösung = document.getElementById("berechnungsfenster").value; 
-                document.getElementById("anzeigefenster").value = lösung;
+            function calc(){ 
+                
+           // eingabe wird in var eingabe gespeichert, bei operations zeichen gesplitet und in var rechnung gespeichert
+            var eingabe = document.getElementById("berechnungsfenster").value;
+            var rechnung = eingabe.split(/[+*^/-]/);
+                
+            // die Variable rechnung wird im anzeigefenster ausgegeben       
+            document.getElementById("anzeigefenster").value = rechnung;
             }
-        </script>
 
+            // Funktion welche das Eingabefeld und das Anzeigefenster leert
+            function reset(){
+            document.getElementById("berechnungsfenster").value = "";
+            document.getElementById("anzeigefenster").value = "";
+            }
+
+        </script>
     </head>
 
     <body>
@@ -20,11 +29,14 @@
         <!-- title-->
         <h1> Browser Rechner</h1>
 
+        <!-- resetknopf-->
+        <button onclick="reset()">Reset</button>    
+
         <!-- Eingabefeld/berechnungsfenster-->
         <input id="berechnungsfenster" type="text" >
 
         <!-- Berechnungsknopf-->
-        <button onclick="berechnen();">Berechnen</button>
+        <button onclick="calc();">Berechnen</button>
 
         <!-- Anzeigefenster für Resultat-->
         <input id="anzeigefenster" type="text" >
@@ -36,5 +48,4 @@
         </div>
 
     </body>
-    
 </html>
