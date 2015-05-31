@@ -5,14 +5,43 @@
         <title>Browser Rechner</title>
         <script type="text/javascript">
 
-            function calc(){ 
-                
-           // eingabe wird in var eingabe gespeichert, bei operations zeichen gesplitet und in var rechnung gespeichert
-            var eingabe = document.getElementById("berechnungsfenster").value;
+            function calc(){
+            
+            // eingabe wird in var eingabe gespeichert, bei operations zeichen gesplitet und in var rechnung gespeichert und position des operationszeichen wird in jeweiliger var gespeichert 
+            var eingabe = document.getElementById("berechnungsfenster").value;    
             var rechnung = eingabe.split(/[+*^/-]/);
+            var addition = eingabe.search(/[+]/);
+            var subtraktion = eingabe.search(/[-]/);
+            var multiplikation = eingabe.search(/[*]/);
+            var exponent = eingabe.search(/[^]/);
+            var division = eingabe.search(/[/]/);
+            var lösung = 0;
+
+            //  Rechnung wird gemäs operationszeichen ausgeführt und in var lösung gespeichert   
+            if(addition>0){
+
+                lösung = parseInt(rechnung[0])+parseInt(rechnung[1])
+
+            }else if(subtraktion>0){
+
+                lösung = parseInt(rechnung[0])-parseInt(rechnung[1])
+
+            }else if(multiplikation>0){
+
+                lösung = parseInt(rechnung[0])*parseInt(rechnung[1])
+
+            }else if(division>0) {
+
+                lösung = parseInt(rechnung[0])/parseInt(rechnung[1])
+
+            }else if(exponent>0){
+
+                lösung = Math.pow(rechnung[0], rechnung[1]);
+                console.log(lösung);
+            }
                 
-            // die Variable rechnung wird im anzeigefenster ausgegeben       
-            document.getElementById("anzeigefenster").value = rechnung;
+            // lösung wird in anzeigefenster ausgegeben    
+            document.getElementById("anzeigefenster").value = lösung;
             }
 
             // Funktion welche das Eingabefeld und das Anzeigefenster leert
@@ -22,8 +51,8 @@
             }
 
         </script>
-    </head>
 
+    </head>
     <body>
 
         <!-- title-->
