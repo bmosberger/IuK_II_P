@@ -1,0 +1,51 @@
+/* ----------------- body--------------------- */
+body{	
+	background: grey; 
+}
+
+/* ----------------- titel--------------------- */
+h1    {font-family: sans-serif; font-size: 25px; color: blue; text-align: center;}
+
+#title{	
+	background: grey;
+    position:fixed;
+    width: 100%;
+    top:50px;
+
+}
+/* ----------------- aktionsfenster--------------------- */
+#aktionsfenster{	
+	background: white;
+    position:fixed;
+    left:34.5%;
+    top:140px;
+    padding: 8px;
+    border:2px solid blue;
+
+
+}
+
+/* ----------------- Zwischenspeicher--------------------- */
+#zw{	
+	background: white;
+    position:fixed;
+	left: 32.5%;
+	top:220px; 
+    padding: 8px;
+    border:2px solid blue;
+
+}
+
+/* ----------------- Legende--------------------- */
+#legende{	
+	background: white;
+    position:fixed;
+    top:350px;
+    width:20%;
+    left: 40%;
+    text-align: center;
+    padding: 8px;
+    border:2px solid blue;
+
+}
+
