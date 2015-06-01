@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Browser Rechner</title>
+<script src="script.js"></script>    
+<link href="css_regeln.css" rel="stylesheet">    
+</head>
+    
+    <body>
+    
+         <!-- title-->
+            <div id="title">
+                <h1> Browser Rechner</h1>
+            </div>
+        
+            <!-- aktionsfenster-->            
+            <div id="aktionsfenster">
+                
+                <!-- resetknopf-->
+                <button onclick="reset()">Reset</button>
+    
+                <!-- Eingabefeld/berechnungsfenster-->    
+                <input id="berechnungsfenster" type="text" onkeypress="if (event.keyCode==13){ calc();}"  >
+    
+                <!-- Berechnungsknopf-->    
+                <button onclick="calc()">Berechnen</button>
+    
+                <!-- Anzeigefenster für Resultat-->    
+                <input id="anzeigefenster" type="text" readonly>
+            </div>  
+        
+            <!-- Fenster Zwischenspeicher-->    
+            <div id="zw">
+                
+                <!-- Zwischenspeicher 1-->    
+                <div id ="zw1"> 
+                    <button onclick="toCache1()">In Zwischenspeicher 1</button>
+                    <input id="zwischenspeicher1" type="text" readonly>
+                    <button onclick="loadCache1()">In Berechnungsfenster</button>
+                    <button onclick="clear1()">Reset </button>
+                </div>
+                
+                <!-- Zwischenspeicher 2-->    
+                <div id ="zw2"> 
+                    <button onclick="toCache2()">In Zwischenspeicher 2</button>
+                    <input id="zwischenspeicher2" type="text" readonly>
+                    <button onclick="loadCache2()">In Berechnungsfenster</button>
+                    <button onclick="clear2()">Reset </button>
+                </div>
+                
+                <!-- Zwischenspeicher 3-->    
+                <div id ="zw3"> 
+                    <button onclick="toCache3()">In Zwischenspeicher 3</button>
+                    <input id="zwischenspeicher3" type="text" readonly>
+                    <button onclick="loadCache3()">In Berechnungsfenster</button>
+                    <button onclick="clear3()">Reset </button>
+                </div>
+    
+            </div>
+    
+            <!-- legende-->    
+            <div id="legende"> 	Wurzel von x 	&nbsp = sqrt(x) <br>
+			e hoch x 	&nbsp = e(x) <br>
+			sinus x 	= sin(x) <br>
+			cosinus x 	= cos(x) <br>
+			tangens x 	= tan(x) <br>
+			ln x 		= ln(x) <br>
+			x hoch y 	= x^y <br>
+			cosinus x 	= cos(x) <br>
+            </div>
+    </body>
+</html>
