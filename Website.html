@@ -6,75 +6,189 @@
         <script type="text/javascript">
 
             function calc(){
-            
-            // eingabe wird in var eingabe gespeichert, bei operations zeichen gesplitet und in var rechnung gespeichert und position des operationszeichen wird in jeweiliger var gespeichert 
-            var eingabe = document.getElementById("berechnungsfenster").value;    
+                        
+            // eingabe wird in var eingabe gespeichert, bei operations zeichen gesplitet und position des operationszeichen wird in jeweiliger var gespeichert     
+            var lösung = 0;
+            var eingabe = document.getElementById("berechnungsfenster").value;
             var rechnung = eingabe.split(/[+*^/-]/);
             var addition = eingabe.search(/[+]/);
             var subtraktion = eingabe.search(/[-]/);
             var multiplikation = eingabe.search(/[*]/);
-            var exponent = eingabe.search(/[^]/);
+            var exponent = eingabe.indexOf("^");
             var division = eingabe.search(/[/]/);
-            var lösung = 0;
 
-            //  Rechnung wird gemäs operationszeichen ausgeführt und in var lösung gespeichert   
-            if(addition>0){
+            if(eingabe.startsWith("sqrt")){
 
-                lösung = parseInt(rechnung[0])+parseInt(rechnung[1])
+	           var länge = eingabe.length -6;
+	           var wurzel = eingabe.substr(eingabe.search(/[(]/)+1,länge); 
+	           lösung = Math.sqrt(wurzel);
+            
+            //  Rechnung wird gemäs operationszeichen ausgeführt und in var lösung gespeichert    
+            } else if(addition>0){
 
-            }else if(subtraktion>0){
+	           lösung = parseInt(rechnung[0])+parseInt(rechnung[1])
 
-                lösung = parseInt(rechnung[0])-parseInt(rechnung[1])
+            } else if(subtraktion>0){
 
-            }else if(multiplikation>0){
+	           lösung = parseInt(rechnung[0])-parseInt(rechnung[1])
 
-                lösung = parseInt(rechnung[0])*parseInt(rechnung[1])
+            } else if(multiplikation>0){
 
-            }else if(division>0) {
+	           lösung = parseInt(rechnung[0])*parseInt(rechnung[1])
 
-                lösung = parseInt(rechnung[0])/parseInt(rechnung[1])
+            } else if(division>0) {
 
-            }else if(exponent>0){
+	           lösung = parseInt(rechnung[0])/parseInt(rechnung[1])
 
-                lösung = Math.pow(rechnung[0], rechnung[1]);
-                console.log(lösung);
+            } else if(exponent>0) {
+
+	           var base = parseInt(rechnung[0]);
+	           var ex = parseInt(rechnung[1]);
+	           lösung = Math.pow(base,ex);
+
+            } else if (eingabe.startsWith("e")){
+
+	           var länge = eingabe.length -3;
+	           var eHoch = eingabe.substr(eingabe.search(/[(]/)+1,länge); 
+	           lösung = Math.exp(eHoch);
+            } else if (eingabe.startsWith("sin")){
+
+	           var länge = eingabe.length -5;
+	           var sinus = eingabe.substr(eingabe.search(/[(]/)+1,länge); 
+	           lösung = Math.sin(sinus);
+
+            } else if (eingabe.startsWith("cos")){
+
+	           var länge = eingabe.length -5;
+	           var cosinus = eingabe.substr(eingabe.search(/[(]/)+1,länge); 
+	           lösung = Math.cos(cosinus);
+
+            } else if (eingabe.startsWith("tan")){
+
+	           var länge = eingabe.length -5;
+	           var tangens = eingabe.substr(eingabe.search(/[(]/)+1,länge); 
+	           lösung = Math.tan(tangens);
+
+            }else if (eingabe.startsWith("ln")){
+
+	           var länge = eingabe.length -4;
+	           var logarithmus = eingabe.substr(eingabe.search(/[(]/)+1,länge); 
+	           lösung = Math.log(logarithmus);
             }
-                
-            // lösung wird in anzeigefenster ausgegeben    
+            
+            // lösung wird in anzeigefenster ausgegeben       
             document.getElementById("anzeigefenster").value = lösung;
             }
-
+            
             // Funktion welche das Eingabefeld und das Anzeigefenster leert
             function reset(){
             document.getElementById("berechnungsfenster").value = "";
             document.getElementById("anzeigefenster").value = "";
             }
+            
+            // Ergebnis wird in den jeweiligen zwischenspeicher geladen
+            function toCache1(){
+            document.getElementById("zwischenspeicher1").value = document.getElementById("anzeigefenster").value;
+            }
+
+            function toCache2(){
+            document.getElementById("zwischenspeicher2").value = document.getElementById("anzeigefenster").value;
+            }
+
+            function toCache3(){
+            document.getElementById("zwischenspeicher3").value = document.getElementById("anzeigefenster").value;
+            }
+
+            // Zwischenspiecher in Eingabefenster schreiben
+            function loadCache1(){
+            document.getElementById("berechnungsfenster").value += document.getElementById("zwischenspeicher1").value;
+            }
+
+            function loadCache2(){
+            document.getElementById("berechnungsfenster").value += document.getElementById("zwischenspeicher2").value;
+            }
+
+            function loadCache3(){
+            document.getElementById("berechnungsfenster").value += document.getElementById("zwischenspeicher3").value;
+            }
+
+            // Jeweiliger zwischenspeicher wird gelert
+            function clear1(){
+            document.getElementById("zwischenspeicher1").value = "";
+            }
+
+            function clear2(){
+            document.getElementById("zwischenspeicher2").value = "";
+            }
+
+            function clear3(){
+            document.getElementById("zwischenspeicher3").value = "";
+            }
 
         </script>
 
     </head>
+    
     <body>
-
-        <!-- title-->
-        <h1> Browser Rechner</h1>
-
-        <!-- resetknopf-->
-        <button onclick="reset()">Reset</button>    
-
-        <!-- Eingabefeld/berechnungsfenster-->
-        <input id="berechnungsfenster" type="text" >
-
-        <!-- Berechnungsknopf-->
-        <button onclick="calc();">Berechnen</button>
-
-        <!-- Anzeigefenster für Resultat-->
-        <input id="anzeigefenster" type="text" >
-
-        <!-- legende-->
-        <div id="legende"> 
-            Wurzel = sqrt() <br>
-            e hoch x = e() <br>
-        </div>
-
+    
+            <!-- title-->
+            <h1> Browser Rechner</h1>
+        
+            <!-- aktionsfenster-->            
+            <div id="aktionsfenster">
+                
+                <!-- resetknopf-->
+                <button onclick="reset()">Reset</button>
+    
+                <!-- Eingabefeld/berechnungsfenster-->    
+                <input id="berechnungsfenster" type="text">
+    
+                <!-- Berechnungsknopf-->    
+                <button onclick="calc()">Berechnen</button>
+    
+                <!-- Anzeigefenster für Resultat-->    
+                <input id="anzeigefenster" type="text" readonly>
+            </div>  
+        
+            <!-- Fenster Zwischenspeicher-->    
+            <div id="zw">
+                
+                <!-- Zwischenspeicher 1-->    
+                <div id ="zw1"> 
+                    <button onclick="toCache1()">In Zwischenspeicher 1</button>
+                    <input id="zwischenspeicher1" type="text" readonly>
+                    <button onclick="loadCache1()">In Berechnungsfenster</button>
+                    <button onclick="clear1()">Reset </button>
+                </div>
+                
+                <!-- Zwischenspeicher 2-->    
+                <div id ="zw2"> 
+                    <button onclick="toCache2()">In Zwischenspeicher 2</button>
+                    <input id="zwischenspeicher2" type="text" readonly>
+                    <button onclick="loadCache2()">In Berechnungsfenster</button>
+                    <button onclick="clear2()">Reset </button>
+                </div>
+                
+                <!-- Zwischenspeicher 3-->    
+                <div id ="zw3"> 
+                    <button onclick="toCache3()">In Zwischenspeicher 3</button>
+                    <input id="zwischenspeicher3" type="text" readonly>
+                    <button onclick="loadCache3()">In Berechnungsfenster</button>
+                    <button onclick="clear3()">Reset </button>
+                </div>
+    
+            </div>
+    
+            <!-- legende-->    
+            <div id="legende"> 	Wurzel von x 	&nbsp = sqrt(x) <br>
+			e hoch x 	&nbsp = e(x) <br>
+			sinus x 	= sin(x) <br>
+			cosinus x 	= cos(x) <br>
+			tangens x 	= tan(x) <br>
+			ln x 		= ln(x) <br>
+			x hoch y 	= x^y <br>
+			cosinus x 	= cos(x) <br>
+            </div>
+    
     </body>
 </html>
